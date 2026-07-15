@@ -263,13 +263,6 @@ else
 	install -m 0755 src/internal/inside-distrobox/assets/distrobox-export    "${bindir}/distrobox-export"
 	install -m 0755 src/internal/inside-distrobox/assets/distrobox-host-exec "${bindir}/distrobox-host-exec"
 
-	# v1 subcommand compatibility: argv[0] dispatch via symlinks.
-	# Users (and desktop entries written by v1 distrobox-export) still
-	# invoke `distrobox-enter foo`; the binary routes by basename.
-	for sub in assemble create enter ephemeral generate-entry ls list rm stop upgrade; do
-		ln -sf distrobox "${bindir}/distrobox-${sub}"
-	done
-
 	# v2 ships a single combined completion per shell.
 	install -m 0644 src/completions/bash/distrobox "${bashdir}/distrobox"
 	install -m 0644 src/completions/zsh/_distrobox  "${zshdir}/_distrobox"
